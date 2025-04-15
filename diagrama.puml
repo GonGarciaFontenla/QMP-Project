@@ -1,0 +1,37 @@
+@startuml
+
+class Outfit {
+    +items: Garment[*]
+}
+
+class Garment {
+    +category: Category
+    +material: String
+    +mainColor: String
+    +secondaryColor: String
+    +isValidColor(String colorName)
+}
+
+class User {
+    -items: Garment[*]
+    +uploadItem(item: Garment): void
+}
+
+class TypeOfGarment {
+    +name: String
+}
+
+enum Category {
+    ParteSuperior
+    ParteInferior
+    Calzado
+    Accessory
+}
+
+Outfit --> Garment : contains
+User "1" --> "*" Garment : owns
+User --> Outfit : wears
+Garment --> TypeOfGarment
+TypeOfGarment --> Category
+
+@enduml
