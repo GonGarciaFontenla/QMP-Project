@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.outfit.Garment;
+import org.example.Garment.Garment;
 
 import java.util.ArrayList;
 

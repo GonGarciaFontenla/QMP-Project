@@ -1,18 +1,20 @@
 package org.example;
 
-import org.example.outfit.*;
+import org.example.Garment.*;
+import org.example.Garment.Material.*;
 
 import java.util.ArrayList;
 
 public class User {
   private ArrayList<Garment> items;
 
-  public void UploadItem(TypeOfGarment type, Material material, String mainColor, String secondaryColor) {
-    Garment item = new Garment(type, material, mainColor, secondaryColor);
+  public void UploadItem(TypeOfGarment type, TypeMaterial typeMaterial, Color mainColor, Color secondaryColor, Weft weft) {
+    Material material = new Material(typeMaterial, weft, mainColor, secondaryColor);
+    Garment item = new Garment(type, material);
     items.add(item);
   }
 
-  public void uploadItem(TypeOfGarment type, Material material, String mainColor) {
-    UploadItem(type, material, mainColor, null);
+  public void uploadItem(TypeOfGarment type, TypeMaterial typeMaterial, Color mainColor, Weft weft) {
+    UploadItem(type, typeMaterial,mainColor, null, weft );
   }
 }

@@ -1,37 +1,83 @@
 @startuml
+left to right direction
 
-class Outfit {
-    +items: Garment[*]
+package "Usuario y Atuendos" {
+    class User {
+        -items: Garment[*]
+        +uploadItem(item: Garment): void
+    }
+
+    class Outfit {
+        +items: Garment[*]
+    }
+
+    User --> Garment : owns
+    User --> Outfit : wears
+    Outfit --> Garment : contains
 }
 
-class Garment {
-    +category: Category
-    +material: String
-    +mainColor: String
-    +secondaryColor: String
-    +isValidColor(String colorName)
+package "Prendas" {
+    class Garment {
+        +category: Category
+        +mainColor: String
+        +secondaryColor: String
+        +isValidColor(String colorName)
+    }
+
+    class GarmentDraft {
+    }
+
+    class TypeOfGarment {
+        +name: String
+    }
+
+    enum Category {
+        ParteSuperior
+        ParteInferior
+        Calzado
+        Accessory
+    }
+
+    Garment --> TypeOfGarment : has
+    Garment --> Material : has
+    GarmentDraft --> Material
+    GarmentDraft --> TypeOfGarment
+    TypeOfGarment --> Category : belongs
 }
 
-class User {
-    -items: Garment[*]
-    +uploadItem(item: Garment): void
-}
+package "Materiales" {
+    class Material {
+        +trama: weft
+        +material: Material
+        +mainColor: Color
+        +secondaryColor: Color
+    }
 
-class TypeOfGarment {
-    +name: String
-}
+    class Color {
+        +isInvalidColor(color string)
+    }
 
-enum Category {
-    ParteSuperior
-    ParteInferior
-    Calzado
-    Accessory
-}
+    enum Weft {
+        lisa
+        rayada
+        lunares
+        cuadros
+        estampado
+    }
 
-Outfit --> Garment : contains
-User "1" --> "*" Garment : owns
-User --> Outfit : wears
-Garment --> TypeOfGarment
-TypeOfGarment --> Category
+    enum TypeMaterial {
+        ALGODON
+        LANA
+        TELA
+        PIQUE
+        ACETATO
+        CUERO
+    }
+
+    Material --> TypeMaterial
+    Material --> Weft
+    Material --> Color
+}
 
 @enduml
+

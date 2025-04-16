@@ -1,4 +1,4 @@
-package org.example.outfit;
+package org.example.Garment;
 
 import java.util.Map;
 import static java.util.Objects.requireNonNull;
