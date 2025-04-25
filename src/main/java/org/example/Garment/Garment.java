@@ -9,11 +9,12 @@ import static java.util.Objects.requireNonNull;
 public class Garment {
   private final TypeOfGarment type;
   private final Material material;
+  private final Formality formalidad;
 
-  public Garment(TypeOfGarment type, Material material) {
-
+  public Garment(TypeOfGarment type, Material material, Formality formalidad) {
     this.type = requireNonNull(type, "Type cannot be null");
     this.material = requireNonNull(material, "Material cannot be null");
+    this.formalidad = (formalidad != null)? formalidad : Formality.NEUTRA;
   }
 
   public TypeOfGarment getType() {
@@ -22,5 +23,9 @@ public class Garment {
 
   public Material getMaterial() {
     return material;
+  }
+
+  public Formality getFormality() {
+    return formalidad;
   }
 }

@@ -1,15 +1,17 @@
 package org.example.Garment;
 
 import org.example.Garment.Material.*;
-import org.example.User;
 
 public class GarmentDraft {
   private TypeOfGarment type;
   private Material material;
+  private Formality formalidad;
 
   public void type(TypeOfGarment type) {
     this.type = type;
   }
+
+  public void formalidad(Formality formalidad) {this.formalidad = formalidad; }
 
   public void material(Material material) {
     this.material = material;
@@ -39,6 +41,6 @@ public class GarmentDraft {
     if (!isComplete()) {
       throw new IllegalStateException("Garment is not complete");
     }
-    return new Garment(type, material);
+    return new Garment(type, material, formalidad);
   }
 }

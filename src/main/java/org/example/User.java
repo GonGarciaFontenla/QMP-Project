@@ -4,11 +4,13 @@ import org.example.Garment.*;
 import java.util.ArrayList;
 
 public class User {
-  private ArrayList<Garment> closet;
+  private final ArrayList<Garment> closet;
   private GarmentDraft draft;
+  private final int age;
 
-  public User() {
-    this.closet = new ArrayList<>();
+  public User(ArrayList<Garment> closet, int age) {
+    this.closet = closet;
+    this.age = age;
   }
 
   public void UploadItem(Garment prenda) {
@@ -38,5 +40,9 @@ public class User {
 
   public void ClearDraft() {
     this.draft = new GarmentDraft();
+  }
+
+  public int getAge() {
+    return age;
   }
 }

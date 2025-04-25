@@ -8,6 +8,8 @@ public class TypeOfGarment {
       "remera", Category.PARTE_SUPERIOR,
       "camisa", Category.PARTE_SUPERIOR,
       "pantalon", Category.PARTE_INFERIOR,
+      "falda", Category.PARTE_INFERIOR,
+      "short", Category.PARTE_INFERIOR,
       "zapatillas", Category.CALZADO,
       "anteojos", Category.ACCESORIO
   );

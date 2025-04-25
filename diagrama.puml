@@ -2,82 +2,140 @@
 left to right direction
 
 package "Usuario y Atuendos" {
-    class User {
-        -items: Garment[*]
-        +uploadItem(item: Garment): void
-    }
+  class User {
+    -items: Garment[*]
+    -outfits: Outfit[*]
+    -suggester: OutfitSuggester
+    +uploadItem(item: Garment): void
+    +suggestOutfit(): Outfit[*]
+  }
 
-    class Outfit {
-        +items: Garment[*]
-    }
+  class Outfit {
+    +items: Garment[*]
+    +formalityLevel: Formalidad
+    +isValid(): boolean
+  }
 
-    User --> Garment : owns
-    User --> Outfit : wears
-    Outfit --> Garment : contains
+  User --> Garment : owns
+  User --> Outfit : wears
+  User --> OutfitSuggester : uses
+  Outfit --> Garment : contains
 }
 
 package "Prendas" {
-    class Garment {
-        +category: Category
-        +mainColor: String
-        +secondaryColor: String
-        +isValidColor(String colorName)
-    }
+  class Garment {
+    +category: Category
+    +mainColor: String
+    +secondaryColor: String
+    +type: TypeOfGarment
+    +material: Material
+    +formality: Formalidad
+  }
 
-    class GarmentDraft {
-    }
+  class GarmentDraft {
+    -type: TypeOfGarment
+    -material: Material
+    -mainColor: String
+    -secondaryColor: String
+    +toGarment(): Garment
+  }
 
-    class TypeOfGarment {
-        +name: String
-    }
+  class TypeOfGarment {
+    +name: String
+  }
 
-    enum Category {
-        ParteSuperior
-        ParteInferior
-        Calzado
-        Accessory
-    }
+  enum Category {
+    ParteSuperior
+    ParteInferior
+    Calzado
+    Accessory
+  }
 
-    Garment --> TypeOfGarment : has
-    Garment --> Material : has
-    GarmentDraft --> Material
-    GarmentDraft --> TypeOfGarment
-    TypeOfGarment --> Category : belongs
+  enum Formalidad {
+    FORMAL
+    INFORMAL
+    NEUTRA
+  }
+
+  Garment --> TypeOfGarment : has
+  Garment --> Material : has
+  Garment --> Formalidad: has
+  GarmentDraft --> Material
+  GarmentDraft --> TypeOfGarment
+  TypeOfGarment --> Category : belongs
 }
 
 package "Materiales" {
-    class Material {
-        +trama: weft
-        +material: Material
-        +mainColor: Color
-        +secondaryColor: Color
-    }
+  class Material {
+    +trama: weft
+    +material: Material
+    +mainColor: Color
+    +secondaryColor: Color
+  }
 
-    class Color {
-        +isInvalidColor(color string)
-    }
+  class Color {
+    +name: String
+    +isInvalidColor(color: String): boolean
+  }
 
-    enum Weft {
-        lisa
-        rayada
-        lunares
-        cuadros
-        estampado
-    }
+  enum Weft {
+    lisa
+    rayada
+    lunares
+    cuadros
+    estampado
+  }
 
-    enum TypeMaterial {
-        ALGODON
-        LANA
-        TELA
-        PIQUE
-        ACETATO
-        CUERO
-    }
+  enum TypeMaterial {
+    ALGODON
+    LANA
+    TELA
+    PIQUE
+    ACETATO
+    CUERO
+  }
 
-    Material --> TypeMaterial
-    Material --> Weft
-    Material --> Color
+  Material --> TypeMaterial
+  Material --> Weft
+  Material --> Color
+}
+
+package "Motores de Sugerencia" {
+  interface SuggestionEngine {
+    +generateSuggestions(user: User): Outfit[*]
+  }
+
+abstract class AbstractSuggestionEngine {
+    +generateSuggestions(user: User): Outfit[*]
+  }
+
+  class BasicSuggestionEngine {
+    +generateSuggestions(user: User): Outfit[*]
+  }
+
+  class FormalSuggestionEngine {
+    +generateSuggestions(user: User): Outfit[*]
+  }
+
+  class SuggestionEngineProvider {
+    -engine: SuggestionEngine
+    +getEngine(): SuggestionEngine
+    +setEngine(engine: SuggestionEngine): void
+  }
+
+  class OutfitSuggester {
+    -engineProvider: SuggestionEngineProvider
+    +suggestOutfit(user: User): Outfit[*]
+  }
+
+  AbstractSuggestionEngine ..|> SuggestionEngine
+  BasicSuggestionEngine --|> AbstractSuggestionEngine
+  FormalSuggestionEngine --|> AbstractSuggestionEngine
+  SuggestionEngineProvider --> SuggestionEngine
+  OutfitSuggester --> SuggestionEngineProvider : uses
 }
 
 @enduml
+
+
 
