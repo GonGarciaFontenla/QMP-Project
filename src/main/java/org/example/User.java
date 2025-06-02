@@ -25,7 +25,7 @@ public class User {
     if (draft != null && draft.isComplete()) {
       Garment garment = draft.build();
       this.closet.add(garment);
-      ClearDraft(); // Clear the draft after confirming
+      ClearDraft();
     } else {
       throw new IllegalStateException("Draft is not complete");
     }
