@@ -13,10 +13,10 @@ import java.util.Random;
 public abstract class AbstractSuggestionEngine implements SuggestionEngine {
 
   @Override
-  public Optional<Outfit> generateOneSuggestion(User user) {
-    List<Prenda> superiorParts = filterByCategory(user.GetItems(), Categoria.PARTE_SUPERIOR, user);
-    List<Prenda> inferiorParts = filterByCategory(user.GetItems(), Categoria.PARTE_INFERIOR, user);
-    List<Prenda> footwears = filterByCategory(user.GetItems(), Categoria.CALZADO, user);
+  public Optional<Outfit> generateOneSuggestion(List<Prenda> prendas, int age) {
+    List<Prenda> superiorParts = filterByCategory(prendas, Categoria.PARTE_SUPERIOR, age);
+    List<Prenda> inferiorParts = filterByCategory(prendas, Categoria.PARTE_INFERIOR, age);
+    List<Prenda> footwears = filterByCategory(prendas, Categoria.CALZADO, age);
 
     if (superiorParts.isEmpty() || inferiorParts.isEmpty() || footwears.isEmpty()) {
       return Optional.empty();
@@ -31,10 +31,10 @@ public abstract class AbstractSuggestionEngine implements SuggestionEngine {
   }
 
   @Override
-  public List<Outfit> generateSuggestions(User user) {
-    List<Prenda> superiorParts = filterByCategory(user.GetItems(), Categoria.PARTE_SUPERIOR, user);
-    List<Prenda> inferiorParts = filterByCategory(user.GetItems(), Categoria.PARTE_INFERIOR, user);
-    List<Prenda> footwears = filterByCategory(user.GetItems(), Categoria.CALZADO, user);
+  public List<Outfit> generateSuggestions(List<Prenda> prendas, int age) {
+    List<Prenda> superiorParts = filterByCategory(prendas, Categoria.PARTE_SUPERIOR, age);
+    List<Prenda> inferiorParts = filterByCategory(prendas, Categoria.PARTE_INFERIOR, age);
+    List<Prenda> footwears = filterByCategory(prendas, Categoria.CALZADO, age);
 
     List<Outfit> outfits = new ArrayList<>();
     for (Prenda superior : superiorParts) {
@@ -47,6 +47,6 @@ public abstract class AbstractSuggestionEngine implements SuggestionEngine {
     return outfits;
   }
 
-  protected abstract List<Prenda> filterByCategory(List<Prenda> prendas, Categoria categoria, User user);
+  protected abstract List<Prenda> filterByCategory(List<Prenda> prendas, Categoria categoria, int age);
 }
 

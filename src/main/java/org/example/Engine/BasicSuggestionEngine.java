@@ -9,7 +9,7 @@ import java.util.List;
 public class BasicSuggestionEngine extends AbstractSuggestionEngine {
 
   @Override
-  protected List<Prenda> filterByCategory(List<Prenda> prendas, Categoria categoria, User user) {
+  protected List<Prenda> filterByCategory(List<Prenda> prendas, Categoria categoria, int age) {
     return prendas.stream()
             .filter(g -> g.getType().getCategory() == categoria)
             .toList();
