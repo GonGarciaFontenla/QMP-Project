@@ -1,4 +1,4 @@
-package org.example.Garment.Material;
+package org.example.Prenda.Material;
 
 public enum TypeMaterial {
   ALGODON,

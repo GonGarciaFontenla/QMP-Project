@@ -1,22 +1,22 @@
 package org.example;
 
-import org.example.Garment.Category;
-import org.example.Garment.Formality;
-import org.example.Garment.Garment;
-import org.example.Garment.Material.Color;
-import org.example.Garment.Material.Material;
-import org.example.Garment.Material.TypeMaterial;
-import org.example.Garment.Material.Weft;
-import org.example.Garment.TypeOfGarment;
+import org.example.Prenda.Categoria;
+import org.example.Prenda.Formalidad;
+import org.example.Prenda.Prenda;
+import org.example.Prenda.Material.Color;
+import org.example.Prenda.Material.Material;
+import org.example.Prenda.Material.TypeMaterial;
+import org.example.Prenda.Material.Weft;
+import org.example.Prenda.TipoDePrenda;
 
 import java.util.ArrayList;
 
 public class Utils {
-  public static Garment createGarment(String typeName, Category categoria, TypeMaterial material,
-                                Color mainColor, Color secondaryColor, Weft weft, Formality formalidad) {
-    TypeOfGarment type = new TypeOfGarment(typeName, categoria);
+  public static Prenda createGarment(String typeName, Categoria categoria, TypeMaterial material,
+                                     Color mainColor, Color secondaryColor, Weft weft, Formalidad formalidad) {
+    TipoDePrenda type = new TipoDePrenda(typeName, categoria);
     Material mat = buildValidMaterial(material, weft, mainColor, secondaryColor);
-    return new Garment(type, mat, formalidad);
+    return new Prenda(type, mat, formalidad);
   }
 
   public static Material buildValidMaterial(TypeMaterial materialType, Weft weft, Color mainColor, Color secondaryColor) {
@@ -29,16 +29,16 @@ public class Utils {
     return new Material(materialType, weft, mainColor, secondaryColor);
   }
 
-  public static ArrayList<Garment> createCloset() {
-    ArrayList<Garment> allGarments = new ArrayList<>();
+  public static ArrayList<Prenda> createCloset() {
+    ArrayList<Prenda> allPrendas = new ArrayList<>();
 
-    allGarments.add(Utils.createGarment("remera", Category.PARTE_SUPERIOR, TypeMaterial.ALGODON, new Color("blue"), null, null, Formality.INFORMAL));
-    allGarments.add(Utils.createGarment("pantalon", Category.PARTE_INFERIOR, TypeMaterial.CUERO, new Color("blue"), null, null, Formality.INFORMAL));
-    allGarments.add(Utils.createGarment("zapatillas", Category.CALZADO, TypeMaterial.CUERO, new Color("blue"), null, null, Formality.NEUTRA));
-    allGarments.add(Utils.createGarment("remera", Category.PARTE_SUPERIOR, TypeMaterial.ALGODON, new Color("blue"), null, null, Formality.FORMAL));
-    allGarments.add(Utils.createGarment("pantalon", Category.PARTE_INFERIOR, TypeMaterial.ACETATO, new Color("blue"), null, null, Formality.FORMAL));
-    allGarments.add(Utils.createGarment("zapatillas", Category.CALZADO, TypeMaterial.CUERO, new Color("blue"), null, null, Formality.FORMAL));
+    allPrendas.add(Utils.createGarment("remera", Categoria.PARTE_SUPERIOR, TypeMaterial.ALGODON, new Color("blue"), null, null, Formalidad.INFORMAL));
+    allPrendas.add(Utils.createGarment("pantalon", Categoria.PARTE_INFERIOR, TypeMaterial.CUERO, new Color("blue"), null, null, Formalidad.INFORMAL));
+    allPrendas.add(Utils.createGarment("zapatillas", Categoria.CALZADO, TypeMaterial.CUERO, new Color("blue"), null, null, Formalidad.NEUTRA));
+    allPrendas.add(Utils.createGarment("remera", Categoria.PARTE_SUPERIOR, TypeMaterial.ALGODON, new Color("blue"), null, null, Formalidad.FORMAL));
+    allPrendas.add(Utils.createGarment("pantalon", Categoria.PARTE_INFERIOR, TypeMaterial.ACETATO, new Color("blue"), null, null, Formalidad.FORMAL));
+    allPrendas.add(Utils.createGarment("zapatillas", Categoria.CALZADO, TypeMaterial.CUERO, new Color("blue"), null, null, Formalidad.FORMAL));
 
-    return allGarments;
+    return allPrendas;
   }
 }

@@ -1,45 +1,47 @@
 package org.example;
 
-import org.example.Garment.*;
+import org.example.Prenda.*;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class User {
-  private final ArrayList<Garment> closet;
-  private GarmentDraft draft;
+  private final String id;
+  private final RepositorioGuardaRopa closet;
   private final int age;
 
-  public User(ArrayList<Garment> closet, int age) {
+  public User(RepositorioGuardaRopa closet, int age) {
+    this.id = UUID.randomUUID().toString();
     this.closet = closet;
     this.age = age;
   }
 
-  public void UploadItem(Garment prenda) {
-    this.closet.add(prenda);
+  public void UploadItem(Prenda prenda, String idGuardaRopa) {
+        RepositorioGuardaRopa
   }
 
-  public ArrayList<Garment> GetItems() {
+  public RepositorioGuardaRopa GetItems() {
     return closet;
   }
 
   public void ConfirmDraft() {
     if (draft != null && draft.isComplete()) {
-      Garment garment = draft.build();
-      this.closet.add(garment);
+      Prenda prenda = draft.build();
+      this.closet.add(prenda);
       ClearDraft();
     } else {
       throw new IllegalStateException("Draft is not complete");
     }
   }
 
-  public GarmentDraft GetDraft() {
+  public BorradorPrenda GetDraft() {
     if (draft == null) {
-      this.draft = new GarmentDraft();
+      this.draft = new BorradorPrenda();
     }
     return this.draft;
   }
 
   public void ClearDraft() {
-    this.draft = new GarmentDraft();
+    this.draft = new BorradorPrenda();
   }
 
   public int getAge() {

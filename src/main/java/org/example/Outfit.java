@@ -1,37 +1,35 @@
 package org.example;
 
-import org.example.Garment.Garment;
-
-import java.util.ArrayList;
+import org.example.Prenda.Prenda;
 
 public class Outfit {
   //An outfit has to be composed by at least one garment of each category -except accesorys-
-  private final Garment calzado;
-  private final Garment parteSuperior;
-  private final Garment parteInferior;
-  private final Garment accesorio;
+  private final Prenda calzado;
+  private final Prenda parteSuperior;
+  private final Prenda parteInferior;
+  private final Prenda accesorio;
 
-  public Outfit(Garment calzado, Garment parteSuperior, Garment parteInferior, Garment accesorio) {
+  public Outfit(Prenda calzado, Prenda parteSuperior, Prenda parteInferior, Prenda accesorio) {
     this.calzado = calzado;
     this.parteSuperior = parteSuperior;
     this.parteInferior = parteInferior;
     this.accesorio = accesorio;
   }
 
-  public Outfit(Garment calzado, Garment parteSuperior, Garment parteInferior) {
+  public Outfit(Prenda calzado, Prenda parteSuperior, Prenda parteInferior) {
     this(calzado, parteSuperior, parteInferior, null);
   }
 
-  public Garment getCalzado() {
+  public Prenda getCalzado() {
     return calzado;
   }
-  public Garment getParteSuperior() {
+  public Prenda getParteSuperior() {
     return parteSuperior;
   }
-  public Garment getParteInferior() {
+  public Prenda getParteInferior() {
     return parteInferior;
   }
-  public Garment getAccesorio() {
+  public Prenda getAccesorio() {
     return accesorio;
   }
 }

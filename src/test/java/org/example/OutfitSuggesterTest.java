@@ -1,11 +1,11 @@
 package org.example;
 
 import org.example.Engine.BasicSuggestionEngine;
-import org.example.Garment.Category;
-import org.example.Garment.Formality;
-import org.example.Garment.Material.Color;
-import org.example.Garment.Material.TypeMaterial;
-import org.example.Garment.Material.Weft;
+import org.example.Prenda.Categoria;
+import org.example.Prenda.Formalidad;
+import org.example.Prenda.Material.Color;
+import org.example.Prenda.Material.TypeMaterial;
+import org.example.Prenda.Material.Weft;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -18,9 +18,9 @@ public class OutfitSuggesterTest {
     @Test
     void testGenerateSuggestionsReturnsAllCombinations() {
       User user = new User(new ArrayList<>(),18);
-      user.UploadItem(Utils.createGarment("camisa", Category.PARTE_SUPERIOR, TypeMaterial.ALGODON, new Color("blue"), new Color("white"), Weft.LISA, Formality.FORMAL));
-      user.UploadItem(Utils.createGarment("pantalon", Category.PARTE_INFERIOR, TypeMaterial.ALGODON, new Color("blue"), new Color("white"), Weft.LISA, Formality.FORMAL));
-      user.UploadItem(Utils.createGarment("zapatillas", Category.CALZADO, TypeMaterial.ALGODON, new Color("blue"), new Color("white"), Weft.LISA, Formality.FORMAL));
+      user.UploadItem(Utils.createGarment("camisa", Categoria.PARTE_SUPERIOR, TypeMaterial.ALGODON, new Color("blue"), new Color("white"), Weft.LISA, Formalidad.FORMAL));
+      user.UploadItem(Utils.createGarment("pantalon", Categoria.PARTE_INFERIOR, TypeMaterial.ALGODON, new Color("blue"), new Color("white"), Weft.LISA, Formalidad.FORMAL));
+      user.UploadItem(Utils.createGarment("zapatillas", Categoria.CALZADO, TypeMaterial.ALGODON, new Color("blue"), new Color("white"), Weft.LISA, Formalidad.FORMAL));
 
       BasicSuggestionEngine suggester = new BasicSuggestionEngine();
       List<Outfit> outfits = suggester.generateSuggestions(user);
@@ -31,11 +31,11 @@ public class OutfitSuggesterTest {
     @Test
     void testGenerateSuggestionsReturnsAllFourCombinations() {
       User user = new User(new ArrayList<>(),18);
-      user.UploadItem(Utils.createGarment("camisa", Category.PARTE_SUPERIOR, TypeMaterial.ALGODON, new Color("blue"), new Color("white"), Weft.LISA, Formality.FORMAL));
-      user.UploadItem(Utils.createGarment("REMERA", Category.PARTE_SUPERIOR, TypeMaterial.ALGODON, new Color("blue"), new Color("white"), Weft.LISA, Formality.FORMAL));
-      user.UploadItem(Utils.createGarment("pantalon", Category.PARTE_INFERIOR, TypeMaterial.ALGODON, new Color("blue"), new Color("white"), Weft.LISA, Formality.FORMAL));
-      user.UploadItem(Utils.createGarment("falda", Category.PARTE_INFERIOR, TypeMaterial.ALGODON, new Color("blue"), new Color("white"), Weft.LISA, Formality.FORMAL));
-      user.UploadItem(Utils.createGarment("zapatillas", Category.CALZADO, TypeMaterial.ALGODON, new Color("blue"), new Color("white"), Weft.LISA, Formality.FORMAL));
+      user.UploadItem(Utils.createGarment("camisa", Categoria.PARTE_SUPERIOR, TypeMaterial.ALGODON, new Color("blue"), new Color("white"), Weft.LISA, Formalidad.FORMAL));
+      user.UploadItem(Utils.createGarment("REMERA", Categoria.PARTE_SUPERIOR, TypeMaterial.ALGODON, new Color("blue"), new Color("white"), Weft.LISA, Formalidad.FORMAL));
+      user.UploadItem(Utils.createGarment("pantalon", Categoria.PARTE_INFERIOR, TypeMaterial.ALGODON, new Color("blue"), new Color("white"), Weft.LISA, Formalidad.FORMAL));
+      user.UploadItem(Utils.createGarment("falda", Categoria.PARTE_INFERIOR, TypeMaterial.ALGODON, new Color("blue"), new Color("white"), Weft.LISA, Formalidad.FORMAL));
+      user.UploadItem(Utils.createGarment("zapatillas", Categoria.CALZADO, TypeMaterial.ALGODON, new Color("blue"), new Color("white"), Weft.LISA, Formalidad.FORMAL));
 
       BasicSuggestionEngine suggester = new BasicSuggestionEngine();
       List<Outfit> outfits = suggester.generateSuggestions(user);

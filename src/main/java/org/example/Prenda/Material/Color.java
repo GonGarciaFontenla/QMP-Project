@@ -1,4 +1,4 @@
-package org.example.Garment.Material;
+package org.example.Prenda.Material;
 
 public class Color {
   private final java.awt.Color awtColor;

@@ -1,17 +1,17 @@
-package org.example.Garment;
+package org.example.Prenda;
 
-import org.example.Garment.Material.*;
+import org.example.Prenda.Material.*;
 
-public class GarmentDraft {
-  private TypeOfGarment type;
+public class BorradorPrenda {
+  private TipoDePrenda type;
   private Material material;
-  private Formality formalidad;
+  private Formalidad formalidad;
 
-  public void type(TypeOfGarment type) {
+  public void type(TipoDePrenda type) {
     this.type = type;
   }
 
-  public void formalidad(Formality formalidad) {this.formalidad = formalidad; }
+  public void formalidad(Formalidad formalidad) {this.formalidad = formalidad; }
 
   public void material(Material material) {
     this.material = material;
@@ -37,10 +37,10 @@ public class GarmentDraft {
     return type != null && material != null;
   }
 
-  public Garment build() {
+  public Prenda build() {
     if (!isComplete()) {
       throw new IllegalStateException("Garment is not complete");
     }
-    return new Garment(type, material, formalidad);
+    return new Prenda(type, material, formalidad);
   }
 }

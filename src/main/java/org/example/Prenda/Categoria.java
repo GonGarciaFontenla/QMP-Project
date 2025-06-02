@@ -1,6 +1,6 @@
-package org.example.Garment;
+package org.example.Prenda;
 
-public enum Category {
+public enum Categoria {
   PARTE_SUPERIOR,
   PARTE_INFERIOR,
   CALZADO,
